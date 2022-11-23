@@ -1,19 +1,19 @@
 import random
 
 card_deck = [
-    {"Ace 2": 2},
-    {"Ace 3": 3},
-    {"Ace 4": 4},
-    {"Ace 5": 5},
-    {"Ace 6": 6},
-    {"Ace 7": 7},
-    {"Ace 8": 8},
-    {"Ace 9": 9},
-    {"Ace 10": 10},
-    {"Ace Jack": 10},
-    {"Ace Queen": 10},
-    {"Ace King": 10},
-    {"Ace": 11},
+    {"Spade 2": 2},
+    {"Spade 3": 3},
+    {"Spade 4": 4},
+    {"Spade 5": 5},
+    {"Spade 6": 6},
+    {"Spade 7": 7},
+    {"Spade 8": 8},
+    {"Spade 9": 9},
+    {"Spade 10": 10},
+    {"Spade Jack": 10},
+    {"Spade Queen": 10},
+    {"Spade King": 10},
+    {"Spade Ace": 11},
     {"Diamond 2": 2},
     {"Diamond 3": 3},
     {"Diamond 4": 4},
@@ -26,7 +26,7 @@ card_deck = [
     {"Diamond Jack": 10},
     {"Diamond Queen": 10},
     {"Diamond King": 10},
-    {"Diamond": 11},
+    {"Diamond Ace": 11},
     {"Clover 2": 2},
     {"Clover 3": 3},
     {"Clover 4": 4},
@@ -39,7 +39,7 @@ card_deck = [
     {"Clover Jack": 10},
     {"Clover Queen": 10},
     {"Clover King": 10},
-    {"Clover": 11},
+    {"Clover Ace": 11},
     {"Heart 2": 2},
     {"Heart 3": 3},
     {"Heart 4": 4},
@@ -52,7 +52,7 @@ card_deck = [
     {"Heart Jack": 10},
     {"Heart Queen": 10},
     {"Heart King": 10},
-    {"Heart": 11},
+    {"Heart Ace": 11},
 ]
 
 discards_deck = []
@@ -157,10 +157,12 @@ while game == "continue":
             else:  # STANDING OR ELSE!
                 deal_card(dealer_hand, 2)
                 print(f"Stand. The dealer has {dealer_hand}. Amount:" + str(add_up_hand(dealer_hand)))
-                check_for_win(player_hand, dealer_hand)
+                round = check_for_win(player_hand, dealer_hand)
+                if round != "continue":
+                    break
     if round != "continue":
         print(round)
-    if round == "win":
+    if round == "you win!" or "dealer bust.":
         player_bank += (current_bet * 2)
     discard_cards(player_hand)
     discard_cards(dealer_hand)
